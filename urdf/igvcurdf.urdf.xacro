@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="diffbot">
+<xacro:include filename="gazebo_control.xacro"/>
 <xacro:macro name="inertial_sphere" params="mass radius *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
@@ -66,6 +67,9 @@
      <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
             <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
         </xacro:inertial_box>
+        <gazebo reference="chassis">
+            <material>Gazebo/red</material>
+        </gazebo>
 </link>
 <!-- wheels-->
 <joint name="left_wheel_joint" type="continuous">
@@ -89,6 +93,9 @@
    <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.06">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
+        <gazebo reference="left_wheel">
+            <material>Gazebo/black</material>
+        </gazebo>
 </link>
 <joint name="right_wheel_joint" type="continuous">
     <parent link="chassis"/>
@@ -111,6 +118,9 @@
    <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.06">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
+        <gazebo reference="right_wheel">
+            <material>Gazebo/black</material>
+        </gazebo>
 </link>
 <!--caster wheel-->
 <joint name="caster_joint" type="fixed">
@@ -121,17 +131,20 @@
 <link name="caster">
     <visual>
         <geometry>
-            <sphere radius="0.025"/>
+            <sphere radius="0.06"/>
         </geometry>
         <material name="black"/>
     </visual>
     <collision>
         <geometry>
-            <sphere radius="0.025"/>
+            <sphere radius="0.06"/>
         </geometry>
     </collision>
-    <xacro:inertial_sphere mass="0.1" radius="0.025">
+    <xacro:inertial_sphere mass="0.1" radius="0.06">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_sphere>
+        <gazebo reference="caster">
+            <material>Gazebo/black</material>
+        </gazebo>
 </link>
 </robot>
