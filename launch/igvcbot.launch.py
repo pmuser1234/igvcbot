@@ -27,7 +27,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
         ]),
-        # launch_arguments={'world': world_file_path}.items()  # Pass the world file as an argument
+        launch_arguments={'world': '/home/abhishek/ros2_ws/igvcbot/worlds/igvcworld' }.items()  # Pass the world file as an argument
     )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
